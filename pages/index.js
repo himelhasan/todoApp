@@ -3,10 +3,30 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
 import TaskItem from "../Components/taskItem";
-
+import { useQuery } from "@tanstack/react-query";
+import { AuthContext } from "../Context/AuthProvider";
+import { useContext } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const { user } = useContext(AuthContext);
+
+  const {
+    data: tasks = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["tasks"],
+    queryFn: async () => {
+      try {
+        const res = await fetch("https://todo-app-server-rho.vercel.app/tasks");
+        const data = await res.json();
+        return data;
+      } catch (error) {}
+    },
+  });
+  console.log(tasks);
+
   return (
     <>
       <Head>
@@ -18,6 +38,12 @@ export default function Home() {
       <main className={styles.main}>
         <div className={` `}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {tasks?.map((t) => (
+              <TaskItem key={t._id} t={t} refetch={refetch}>
+                {" "}
+              </TaskItem>
+            ))}
+
             <TaskItem />
             <TaskItem />
             <TaskItem />
