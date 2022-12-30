@@ -17,6 +17,9 @@ export default function Home() {
     queryFn: async () => {
       try {
         const res = await fetch("https://todo-app-server-rho.vercel.app/tasks");
+        // const ress = await fetch(
+        //   `https://todo-app-server-rho.vercel.app/addTask=${user?.email}`
+        // );
         const data = await res.json();
         return data;
       } catch (error) {}
