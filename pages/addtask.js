@@ -30,9 +30,10 @@ export default function Home() {
         if (imgData.success) {
           // data
           const task = {
-            task: data.task,
-            email,
+            TaskName: data.task,
+            userEmail: email,
             image: imgData.data.url,
+            completed: false,
           };
           console.log(task);
           // save all task data to database

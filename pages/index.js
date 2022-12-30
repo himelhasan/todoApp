@@ -1,12 +1,9 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
 import TaskItem from "../Components/taskItem";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../Context/AuthProvider";
 import { useContext } from "react";
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { user } = useContext(AuthContext);
@@ -27,6 +24,18 @@ export default function Home() {
   });
   console.log(tasks);
 
+  const deleteTask = async (taskID) => {
+    console.log(taskID);
+    fetch(`https://todo-app-server-rho.vercel.app/tasks/${taskID}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        refetch();
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <Head>
@@ -39,16 +48,10 @@ export default function Home() {
         <div className={` `}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {tasks?.map((t) => (
-              <TaskItem key={t._id} t={t} refetch={refetch}>
+              <TaskItem key={t._id} t={t} refetch={refetch} deleteTask={deleteTask}>
                 {" "}
               </TaskItem>
             ))}
-
-            <TaskItem />
-            <TaskItem />
-            <TaskItem />
-            <TaskItem />
-            <TaskItem />
           </div>
         </div>
       </main>
