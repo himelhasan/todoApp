@@ -1,9 +1,22 @@
+/* MY CUSTOM CSS */
+.fancyBg {
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--background-start-rgb), 1),
+    rgba(var(--callout-rgb), 0.5)
+  );
+  background-clip: padding-box;
+  backdrop-filter: blur(24px);
+}
+
+/* MY CUSTOM CSS */
+
 .main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
+  padding: 3rem;
   min-height: 100vh;
 }
 
@@ -26,9 +39,6 @@
 }
 
 .description p {
-  position: relative;
-  margin: 0;
-  padding: 1rem;
   background-color: rgba(var(--callout-rgb), 0.5);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
@@ -97,7 +107,7 @@
 
 .center::before,
 .center::after {
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   filter: blur(45px);
@@ -125,7 +135,7 @@
 
 .thirteen::before,
 .thirteen::after {
-  content: '';
+  content: "";
   position: absolute;
   z-index: -1;
 }
@@ -215,24 +225,17 @@
   .description div {
     display: flex;
     justify-content: center;
-    position: fixed;
+
     width: 100%;
   }
 
   .description p {
     align-items: center;
-    inset: 0 0 auto;
+
     padding: 2rem 1rem 1.4rem;
     border-radius: 0;
     border: none;
     border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.25);
-    background: linear-gradient(
-      to bottom,
-      rgba(var(--background-start-rgb), 1),
-      rgba(var(--callout-rgb), 0.5)
-    );
-    background-clip: padding-box;
-    backdrop-filter: blur(24px);
   }
 
   .description div {

@@ -4,22 +4,12 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { AuthContext } from "../../Context/AuthProvider";
 import logo from "../../public/logo.png";
+import userImg from "../../public/user-default.png";
 import Link from "next/link";
 import Image from "next/image";
 
 const Header = () => {
   const { logout, user } = useContext(AuthContext);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentUser, setCurrentUser] = useState(false);
-
-  const [category, setCategory] = useState([]);
-  useEffect(() => {
-    fetch("https://bechedaw-server.vercel.app/category")
-      .then((res) => res.json())
-      .then((data) => {
-        setCategory(data);
-      });
-  }, []);
 
   const signOut = () => {
     logout()
@@ -32,8 +22,9 @@ const Header = () => {
   };
 
   const navigation = [
-    { name: "Blog", to: "/blog", current: false },
-    { name: "Collections", to: "/collections", current: false },
+    { name: "Todos", to: "/", current: false },
+    { name: "Add a Task", to: "/addtask", current: false },
+    { name: "completed", to: "/collections", current: false },
   ];
 
   function classNames(...classes) {
@@ -41,7 +32,7 @@ const Header = () => {
   }
 
   return (
-    <Disclosure as="nav" className="bg-slate-100  w-full ">
+    <Disclosure as="nav" className="bg-slate-100 w-full ">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -59,13 +50,6 @@ const Header = () => {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <Link href="/">
-                    <img
-                      className="block h-8 w-auto lg:hidden"
-                      src={logo}
-                      alt="Your Company"
-                    />
-                  </Link>
                   <Link href="/">
                     <Image src={logo} width={180} height={20} priority />
                   </Link>
@@ -97,15 +81,15 @@ const Header = () => {
                       <div>
                         <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                           <span className="sr-only">Open user menu</span>
-                          <img
+
+                          <Image
                             className="h-8 w-8 rounded-full"
                             title={user?.displayName}
                             alt={user?.displayName}
-                            src={
-                              user?.photoURL
-                                ? user?.photoURL
-                                : "https://placeimg.com/80/80/people"
-                            }
+                            src={user?.photoURL ? user?.photoURL : { userImg }}
+                            width={180}
+                            height={20}
+                            priority
                           />
                         </Menu.Button>
                       </div>
