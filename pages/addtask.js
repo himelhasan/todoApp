@@ -75,7 +75,7 @@ export default function Home() {
                 </h5>
 
                 <label
-                  for="website-admin"
+                  htmlFor="website-admin"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 ></label>
                 <div className="flex">

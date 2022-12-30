@@ -24,7 +24,7 @@ const Header = () => {
   const navigation = [
     { name: "Todos", to: "/", current: false },
     { name: "Add a Task", to: "/addtask", current: false },
-    { name: "completed", to: "/collections", current: false },
+    { name: "completed", to: "/completedtask", current: false },
   ];
 
   function classNames(...classes) {
@@ -51,7 +51,7 @@ const Header = () => {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <Link href="/">
-                    <Image src={logo} width={180} height={20} priority />
+                    <Image src={logo} width={180} height={20} alt="logo" priority />
                   </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">

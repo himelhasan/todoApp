@@ -147,6 +147,7 @@ const Login = () => {
                         src={logo}
                         width={180}
                         height={20}
+                        alt="logo"
                         className="mx-auto w-48"
                       ></Image>
                       <h4 className="text-xl font-semibold mb-6 text-black text-center">

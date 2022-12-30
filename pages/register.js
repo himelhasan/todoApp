@@ -147,6 +147,7 @@ const Register = () => {
                       <Image
                         src={logo}
                         width={180}
+                        alt="logo"
                         height={20}
                         className="mx-auto w-48"
                       ></Image>{" "}
